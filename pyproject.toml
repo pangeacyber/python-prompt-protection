@@ -1,0 +1,33 @@
+[project]
+name = "rag-python"
+version = "1.0.0"
+description = "An example CLI tool in Python that demonstrates how to use Pangea's Secure Audit Log and Redact services to capture and filter what users are sending to LLMs."
+readme = "README.md"
+requires-python = ">=3.12"
+
+dependencies = [
+    "click>=8.1.7",
+    "openai>=1.47.1",
+    "pangea-sdk>=4.2.0",
+]
+
+[tool.uv]
+dev-dependencies = [
+    "mypy>=1.11.2",
+    "ruff>=0.6.7",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    # ruff defaults
+    "E4",
+    "E7",
+    "E9",
+    "F",
+
+    "I",   # isort
+    "PTH", # flake8-use-pathlib
+]
