@@ -9,7 +9,7 @@ LLMs.
 - Python v3.12 or greater.
 - pip v24.2 or [uv][] v0.4.5.
 - A [Pangea account][Pangea signup] with Secure Audit Log and Redact enabled.
-- An [OpenAI api key][OpenAI API keys].
+- An [OpenAI API key][OpenAI API keys].
 
 ## Setup
 
@@ -47,6 +47,30 @@ Options:
   --openai-api-key TEXT  OpenAI API key. May also be set via the
                          `OPENAI_API_KEY` environment variable.  [required]
   --help                 Show this message and exit.
+```
+
+## Example
+
+With the "Person" Redact rule enabled, names will be redacted. So a prompt like
+the following:
+
+```shell
+$ python rag_python.py "This is a test message about John Smith."
+```
+
+Will result in "This is a test message about \<PERSON\>." being sent to the LLM
+instead. This redaction will also be logged in Secure Audit Log like so:
+
+```json
+{
+  "envelope": {
+    "event": {
+      "message": "Received and redacted prompt to LLM.",
+      "old": "This is a test message about John Smith.",
+      "new": "This is a test message about <PERSON>."
+    }
+  }
+}
 ```
 
 [Redact]: https://pangea.cloud/docs/redact
