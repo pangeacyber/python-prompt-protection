@@ -1,7 +1,11 @@
 [project]
-name = "rag-python"
+name = "prompt-protection"
 version = "1.0.0"
-description = "An example CLI tool in Python that demonstrates how to use Pangea's Secure Audit Log and Redact services to capture and filter what users are sending to LLMs."
+description = """\
+An example CLI tool in Python that demonstrates how to use Pangea's Secure \
+Audit Log and Redact services to capture and filter what users are sending to \
+LLMs.\
+"""
 readme = "README.md"
 requires-python = ">=3.12"
 

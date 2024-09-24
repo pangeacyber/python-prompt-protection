@@ -17,10 +17,18 @@ from pangea.services import Audit, Redact
     help="Pangea Secure Audit Log API token. May also be set via the `PANGEA_AUDIT_TOKEN` environment variable.",
 )
 @click.option(
+    "--audit-config-id",
+    help="Pangea Secure Audit Log configuration ID.",
+)
+@click.option(
     "--redact-token",
     envvar="PANGEA_REDACT_TOKEN",
     required=True,
     help="Pangea Redact API token. May also be set via the `PANGEA_REDACT_TOKEN` environment variable.",
+)
+@click.option(
+    "--redact-config-id",
+    help="Pangea Redact configuration ID.",
 )
 @click.option(
     "--pangea-domain",
@@ -38,11 +46,19 @@ from pangea.services import Audit, Redact
 )
 @click.argument("prompt")
 def main(
-    *, prompt: str, model: str, audit_token: str, redact_token: str, pangea_domain: str, openai_api_key: str
+    *,
+    prompt: str,
+    model: str,
+    audit_token: str,
+    audit_config_id: str | None = None,
+    redact_token: str,
+    redact_config_id: str | None = None,
+    pangea_domain: str,
+    openai_api_key: str,
 ) -> None:
     config = PangeaConfig(domain=pangea_domain)
-    audit = Audit(token=audit_token, config=config)
-    redact = Redact(token=redact_token, config=config)
+    audit = Audit(token=audit_token, config=config, config_id=audit_config_id)
+    redact = Redact(token=redact_token, config=config, config_id=redact_config_id)
 
     # Redact the prompt before sending it to the LLM.
     redacted = redact.redact(text=prompt)

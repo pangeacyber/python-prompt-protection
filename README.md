@@ -1,4 +1,4 @@
-# rag-python
+# python-prompt-protection
 
 An example CLI tool in Python that demonstrates how to use Pangea's [Secure Audit
 Log][] and [Redact][] services to capture and filter what users are sending to
@@ -14,39 +14,52 @@ LLMs.
 ## Setup
 
 ```shell
-$ git clone https://github.com/pangeacyber/rag-python.git
-$ cd rag-python
+git clone https://github.com/pangeacyber/python-prompt-protection.git
+cd python-prompt-protection
+```
 
-# If using pip:
-$ python -m venv .venv
-$ source .venv/bin/activate
-$ pip install .
+If using pip:
 
-# Or, if using uv:
-$ uv sync
-$ source .venv/bin/activate
+```shell
+python -m venv .venv
+source .venv/bin/activate
+pip install .
+```
+
+Or, if using uv:
+
+```shell
+uv sync
+source .venv/bin/activate
+```
+
+Then the app can be executed with:
+
+```shell
+python prompt_protection.py
 ```
 
 ## Usage
 
-```shell
-$ python rag_python.py --help
-Usage: rag_python.py [OPTIONS] PROMPT
+```
+Usage: prompt_protection.py [OPTIONS] PROMPT
 
 Options:
-  --model TEXT           OpenAI model.  [default: gpt-4o-mini; required]
-  --audit-token TEXT     Pangea Secure Audit Log API token. May also be set
-                         via the `PANGEA_AUDIT_TOKEN` environment variable.
-                         [required]
-  --redact-token TEXT    Pangea Redact API token. May also be set via the
-                         `PANGEA_REDACT_TOKEN` environment variable.
-                         [required]
-  --pangea-domain TEXT   Pangea API domain. May also be set via the
-                         `PANGEA_DOMAIN` environment variable.  [default:
-                         aws.us.pangea.cloud; required]
-  --openai-api-key TEXT  OpenAI API key. May also be set via the
-                         `OPENAI_API_KEY` environment variable.  [required]
-  --help                 Show this message and exit.
+  --model TEXT             OpenAI model.  [default: gpt-4o-mini; required]
+  --audit-token TEXT       Pangea Secure Audit Log API token. May also be set
+                           via the `PANGEA_AUDIT_TOKEN` environment variable.
+                           [required]
+  --audit-config-id TEXT   Pangea Secure Audit Log configuration ID.
+  --redact-token TEXT      Pangea Redact API token. May also be set via the
+                           `PANGEA_REDACT_TOKEN` environment variable.
+                           [required]
+  --redact-config-id TEXT  Pangea Redact configuration ID.
+  --pangea-domain TEXT     Pangea API domain. May also be set via the
+                           `PANGEA_DOMAIN` environment variable.  [default:
+                           aws.us.pangea.cloud; required]
+  --openai-api-key TEXT    OpenAI API key. May also be set via the
+                           `OPENAI_API_KEY` environment variable.  [required]
+  --help                   Show this message and exit.
 ```
 
 ## Example
@@ -55,7 +68,7 @@ With the "Person" Redact rule enabled, names will be redacted. So a prompt like
 the following:
 
 ```shell
-$ python rag_python.py "This is a test message about John Smith."
+python prompt_protection.py "This is a test message about John Smith."
 ```
 
 Will result in "This is a test message about \<PERSON\>." being sent to the LLM
@@ -73,7 +86,7 @@ instead. This redaction will also be logged in Secure Audit Log like so:
 }
 ```
 
-[Redact]: https://pangea.cloud/docs/redact
+[Redact]: https://pangea.cloud/docs/redact/
 [Secure Audit Log]: https://pangea.cloud/docs/audit/
 [Pangea signup]: https://pangea.cloud/signup
 [OpenAI API keys]: https://platform.openai.com/api-keys
