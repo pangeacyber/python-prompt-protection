@@ -1,8 +1,13 @@
-# python-prompt-protection
+# Prompt Protection in Python
 
 An example CLI tool in Python that demonstrates how to use Pangea's [Secure Audit
 Log][] and [Redact][] services to capture and filter what users are sending to
-LLMs.
+LLMs:
+
+- [Secure Audit Log][] — Create an event when a human prompt is received.
+- [Redact][] — Remove sensitive information from prompts.
+- [IP Intel][] — Stop prompts with malicious IP addresses from going to the LLM.
+- [URL Intel][] — Stop prompts with malicious URLs from going to the LLM.
 
 ## Prerequisites
 
@@ -36,7 +41,7 @@ source .venv/bin/activate
 Then the app can be executed with:
 
 ```shell
-python prompt_protection.py
+python prompt_protection.py "Give me information on John Smith."
 ```
 
 ## Usage
@@ -68,10 +73,10 @@ With the "Person" Redact rule enabled, names will be redacted. So a prompt like
 the following:
 
 ```shell
-python prompt_protection.py "This is a test message about John Smith."
+python prompt_protection.py "Give me information on John Smith."
 ```
 
-Will result in "This is a test message about \<PERSON\>." being sent to the LLM
+Will result in "Give me information on \<PERSON\>." being sent to the LLM
 instead. This redaction will also be logged in Secure Audit Log like so:
 
 ```json
