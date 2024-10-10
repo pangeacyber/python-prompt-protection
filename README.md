@@ -6,8 +6,6 @@ LLMs:
 
 - [Secure Audit Log][] — Create an event when a human prompt is received.
 - [Redact][] — Remove sensitive information from prompts.
-- [IP Intel][] — Stop prompts with malicious IP addresses from going to the LLM.
-- [URL Intel][] — Stop prompts with malicious URLs from going to the LLM.
 
 ## Prerequisites
 
