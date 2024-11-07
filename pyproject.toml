@@ -11,7 +11,7 @@ requires-python = ">=3.12"
 
 dependencies = [
     "click>=8.1.7",
-    "openai>=1.53.0",
+    "openai>=1.54.0",
     "pangea-sdk>=5.1.0",
 ]
 
