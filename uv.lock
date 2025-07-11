@@ -600,7 +600,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "click", specifier = ">=8.2.1" },
-    { name = "openai", specifier = ">=1.93.1" },
+    { name = "openai", specifier = ">=1.93.2" },
     { name = "pangea-sdk", specifier = ">=6.2.0" },
 ]
 
